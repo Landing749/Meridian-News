@@ -20,6 +20,7 @@ async function send(params, templateId) {
   if (!res.ok) throw Object.assign(new Error(String(text || `EmailJS returned ${res.status}`).slice(0, 300)), { status: res.status });
   return true;
 }
-// Errors that mean "stop the whole run" (limits, bad credentials, offline) rather than "this one address failed".
-const isFatal = e => !e || e.status === undefined || e.status <= 0 || [401, 402, 403, 429].includes(e.status) || e.status >= 500;
+// Errors that mean "stop the whole run" (limits, bad credentials, wrong service/template id = 400, expired mail-service login = 412, offline)
+// rather than "this one address failed" (a bad recipient is a 422).
+const isFatal = e => !e || e.status === undefined || e.status <= 0 || [400, 401, 402, 403, 412, 429].includes(e.status) || e.status >= 500;
 module.exports = { configured, send, isFatal };

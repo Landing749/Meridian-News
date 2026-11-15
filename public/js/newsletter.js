@@ -15,9 +15,12 @@
     try {
       const s = await post('start'); if (!s.ok) { msg.textContent = s.j.error || 'Could not start sending.'; return; }
       box.dataset.status = 'sending'; show(s.j);
+      let streak = 0, last = { sent: s.j.sent, failed: s.j.failed };
       while (!stopped) {
         const r = await post('next'); if (!r.ok) { msg.textContent = r.j.error || 'Sending failed.'; break; }
         show(r.j);
+        streak = r.j.failed > last.failed && r.j.sent === last.sent ? streak + 1 : r.j.sent > last.sent ? 0 : streak; last = { sent: r.j.sent, failed: r.j.failed };
+        if (streak >= 3 && !r.j.done) { msg.textContent = `Stopped: the last ${streak} emails all failed${r.j.error ? ' (' + r.j.error + ')' : ''}. Check the EmailJS service, template and limits, then press Resume.`; break; }
         if (r.j.done) { msg.textContent = `Finished. ${r.j.sent} sent${r.j.failed ? `, ${r.j.failed} failed` : ''}. Reloading…`; running = false; setTimeout(() => location.reload(), 900); return; }
         if (r.j.fatal) { msg.textContent = 'Stopped: ' + r.j.error + ' Fix the problem, then press Resume.'; break; }
         await new Promise(res => setTimeout(res, 1200));

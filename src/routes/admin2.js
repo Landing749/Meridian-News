@@ -232,7 +232,11 @@ ${field('sm', 'Motto in life', m.motto, { name: 'motto', max: 200, help: 'Shown 
     if (i >= 0 && j >= 0 && j < ids.length) { [ids[i], ids[j]] = [ids[j], ids[i]]; const b = db.batch(); ids.forEach((id, n) => b.patch('staff', id, { sort: n })); await b.commit(); }
     back(res, '/admin/staff', 'Order updated.');
   });
-  router.post('/staff/:id/delete', requirePerm('staff.manage'), async (req, res) => { await db.remove('staff', +req.params.id); audit(req, 'staff_deleted', 'staff', req.params.id); back(res, '/admin/staff', 'Team member removed.'); });
+  router.post('/staff/:id/delete', requirePerm('staff.manage'), async (req, res) => {
+    const m = db.get('staff', /^\d+$/.test(req.params.id) ? +req.params.id : req.params.id);
+    if (!m || !(await db.remove('staff', m.id))) return back(res, '/admin/staff', '', 'That team member could not be found. Refresh the page and try again.');
+    audit(req, 'staff_deleted', 'staff', m.id, m.name); back(res, '/admin/staff', 'Team member removed.');
+  });
 
   // ===== Careers =====
   const jobForm = (req, j = {}) => `<form method="post" action="/admin/careers${j.id ? '/' + j.id : ''}" class="paper panel">${csrf(req)}<div class="formgrid">${field('jt', 'Position title', j.title, { name: 'title', req: 1 })}${field('jd', 'Department', j.department, { name: 'department' })}${field('je', 'Employment type', j.employment_type || 'Full-time', { name: 'employment_type' })}${field('jl', 'Work location', j.location, { name: 'location' })}${field('jdl', 'Application deadline', (j.deadline || '').slice(0, 10), { name: 'deadline', type: 'date' })}<div class="field"><label for="js">Status</label><select id="js" name="status">${['draft', 'published', 'closed'].map(s => `<option value="${s}"${(j.status || 'draft') === s ? ' selected' : ''}>${s}</option>`).join('')}</select></div></div>

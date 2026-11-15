@@ -41,7 +41,7 @@ const CASCADE = {
 const mirrors = new Map();
 const keyOf = id => String(id);
 const clean = o => { const r = {}; for (const [k, v] of Object.entries(o)) if (k !== 'id') r[k] = v === undefined ? null : v; return r; };
-const norm = (t, key, val) => ({ ...TABLES[t].defaults, ...(val || {}), id: TABLES[t].auto ? Number(key) : key });
+const norm = (t, key, val) => ({ ...TABLES[t].defaults, ...(val || {}), id: TABLES[t].auto && /^\d+$/.test(key) ? Number(key) : key });
 const cmp = (a, b) => (typeof a.id === 'number' ? a.id - b.id : String(a.id) < String(b.id) ? -1 : 1);
 
 async function loadTable(t) {
