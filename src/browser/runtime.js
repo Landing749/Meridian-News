@@ -74,7 +74,7 @@ function create(app, hooks) {
   function render(html, status) {
     const doc = new DOMParser().parseFromString(withBase(String(html)), 'text/html');
     const scripts = [...doc.body.querySelectorAll('script[src]')].map(s => s.getAttribute('src'));
-    doc.body.querySelectorAll('script').forEach(s => s.remove());
+    doc.body.querySelectorAll('script:not([type="application/json"])').forEach(s => s.remove()); // keep inert JSON data blocks (the issue editor reads #issue-data)
     dropPageListeners();
     document.title = doc.title || document.title;
     syncHead(doc.head);

@@ -80,6 +80,13 @@ await step('every admin screen renders for a super administrator', async () => {
   for (const u of urls) { const r = await w.__mmg.dispatch({ method: 'GET', url: u }); if (r.status !== 200 || /Something went wrong/.test(String(r.body))) bad.push(`${u} -> ${r.status}${r.redirect ? ' ' + r.redirect : ''}`); }
   assert.deepEqual([...bad], [], 'failing screens: ' + bad.join(', '));
 });
+await step('the issue editor keeps its JSON data block after the page renders', async () => {
+  const c = await w.__mmg.dispatch({ method: 'POST', url: '/admin/issues', body: { title: 'Test issue' } });
+  const m = /\/admin\/issues\/(\d+)/.exec(c.redirect || ''); assert.ok(m, 'issue created: ' + (c.redirect || c.status));
+  await s.go(`/admin/issues/${m[1]}`);
+  assert.ok($('#issue-data'), 'the #issue-data element must survive rendering');
+  assert.doesNotThrow(() => JSON.parse($('#issue-data').textContent));
+});
 await step('first sign-in publishes the public copy of what is already published', async () => {
   const n = await w.__mmg.cms.reconcileNow(); assert.ok(n >= 0);
   assert.equal(await rtdbJson('public/articles/2'), null, 'draft never reaches /public');
