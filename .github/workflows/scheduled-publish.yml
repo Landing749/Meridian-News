@@ -1,0 +1,29 @@
+name: Publish scheduled articles
+
+# OPTIONAL. Articles scheduled for a future time go live automatically while a publisher has the CMS open.
+# This job makes them go live on time even when nobody is signed in. It needs one repository secret:
+#   FIREBASE_SERVICE_ACCOUNT  = the contents of a Firebase service account JSON key (Settings -> Secrets and variables -> Actions)
+# Without the secret it does nothing. Scheduled GitHub jobs can run a few minutes late, and GitHub pauses them on repositories
+# with no activity for 60 days (re-enable under the Actions tab).
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Publish due articles and refresh the public copy
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then echo "FIREBASE_SERVICE_ACCOUNT is not set; nothing to do."; exit 0; fi
+          npm ci
+          npm run reconcile

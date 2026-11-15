@@ -1,0 +1,30 @@
+{
+  "name": "mmg-website-cms-pages",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Meridian Media Group website and newsroom CMS as a static site: GitHub Pages + Firebase (Realtime Database and Auth) + Cloudinary. No server.",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
+    "rules": "node scripts/gen-rules.mjs",
+    "test": "node tests/rules.test.mjs && node tests/app.test.mjs && node tests/base-path.test.mjs && node tests/scripts.test.mjs",
+    "create-admin": "node scripts/create-admin.mjs",
+    "sync-roles": "node scripts/sync-roles.mjs",
+    "reconcile": "node scripts/reconcile.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "dompurify": "^3.4.17",
+    "firebase": "^11.10.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "firebase-admin": "^14.5.1",
+    "jsdom": "^31.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,104 @@
+@font-face{font-family:"Roboto Slab";font-weight:400;font-style:normal;font-display:block;src:url(/fonts/RobotoSlab-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Roboto Slab";font-weight:800;font-style:normal;font-display:block;src:url(/fonts/RobotoSlab-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:400;font-style:normal;font-display:block;src:url(/fonts/Lora-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:400;font-style:italic;font-display:block;src:url(/fonts/Lora-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Lora";font-weight:700;font-style:normal;font-display:block;src:url(/fonts/Lora-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Roboto Condensed";font-weight:400;font-style:normal;font-display:block;src:url(/fonts/RobotoCondensed-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Roboto Condensed";font-weight:400;font-style:italic;font-display:block;src:url(/fonts/RobotoCondensed-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Roboto Condensed";font-weight:700;font-style:normal;font-display:block;src:url(/fonts/RobotoCondensed-700-normal.woff2) format("woff2")}
+
+/* ===== TEMPLATE SETTINGS — change here ===== */
+:root{--paper:210mm;--paper-h:297mm;--m:12mm;--navy:#0b1f4d;--ink:#141414;--rule:#0b1f4d;--grey:#6b6b6b;
+--serif:Georgia,"Times New Roman","Liberation Serif",serif;--sans:"Helvetica Neue",Arial,"Liberation Sans",sans-serif}
+@page{size:210mm 297mm;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9d9d9;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:var(--paper);height:var(--paper-h);background:#fff;margin:8mm auto;padding:var(--m);display:flex;flex-direction:column;overflow:hidden;page-break-after:always;break-after:page;color:var(--ink);font-family:var(--serif)}
+.page:last-child{page-break-after:auto;break-after:auto}
+@media print{html,body{background:#fff}.page{margin:0}}
+/* header */
+.mast{border-bottom:2.2pt solid var(--rule);padding-bottom:2.2mm;margin-bottom:4mm;position:relative}
+.mast::after{content:"";display:block;border-bottom:.5pt solid var(--rule);position:absolute;left:0;right:0;bottom:-1.4mm}
+.logos{display:flex;align-items:center;justify-content:space-between;gap:5mm}
+.logos img{width:31mm;height:auto;flex:none}
+.title{flex:1;white-space:nowrap;text-align:center;font-weight:700;font-size:25pt;letter-spacing:.01em;line-height:1;text-transform:uppercase;color:var(--navy)}
+.mast.front .logos img{width:38mm}
+.mast.front .title{font-size:25pt;min-width:0}
+.meta{display:flex;justify-content:space-between;margin-top:2.2mm;padding-top:1.4mm;border-top:.5pt solid #999;font:600 6.8pt/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#333}
+/* article */
+main{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.sec{font:700 7.5pt/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border-bottom:.5pt solid var(--navy);padding-bottom:1.2mm;margin:1.5mm 0 2.5mm}
+h1{font-weight:800;font-size:27pt;line-height:1.05;letter-spacing:-.005em}
+h1.big{font-size:34pt}
+.deck{font-style:italic;font-size:12pt;line-height:1.3;margin:2.2mm 0 2.6mm;color:#333}
+.by{display:flex;justify-content:space-between;font:600 7.2pt/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:1.6mm 0;border-top:.5pt solid #999;border-bottom:.5pt solid #999;margin-bottom:3mm}
+.by span{font-weight:400;color:var(--grey)}
+figure{margin-bottom:3.5mm}
+.photo{height:68mm;background:#e8eaf0;border:.5pt solid #9aa3b8;display:flex;align-items:center;justify-content:center;font:700 8pt var(--sans);letter-spacing:.14em;color:#59637d}
+main.front .photo{height:74mm}
+figcaption{font:7.4pt/1.35 var(--sans);color:#333;margin-top:1.4mm;padding-top:1mm;border-top:.5pt solid #bbb}
+figcaption em{font-style:normal;font-size:6.4pt;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-left:1mm}
+.cols{flex:1;min-height:0;overflow:hidden;column-gap:5mm;column-rule:.5pt solid #bbb;column-fill:auto;text-align:justify;hyphens:auto;font-size:9.4pt;line-height:1.38}
+.cols.c3{column-count:3}.cols.c4{column-count:4;font-size:8.8pt;line-height:1.34}
+.cols p{margin:0;text-indent:3.5mm}
+.cols p.first{text-indent:0;margin-bottom:0}
+.cols p.first:not(.ph)::first-letter{font-weight:800;font-size:30pt;line-height:.8;float:left;padding:1mm 1.2mm 0 0;color:var(--navy)}
+.ph{} /* .ph = replaceable placeholder content */
+/* footer */
+footer{display:flex;align-items:center;justify-content:space-between;border-top:.5pt solid var(--rule);margin-top:4mm;padding-top:2.4mm;position:relative}
+footer::before{content:"";position:absolute;left:0;right:0;top:-1.6mm;border-top:2.2pt solid var(--rule)}
+footer img{width:29mm;height:auto}
+.pn{font:700 11pt var(--serif);color:var(--navy);letter-spacing:.05em}
+.pn span{display:inline-block;padding:0 3mm;border-left:.5pt solid var(--navy);border-right:.5pt solid var(--navy)}
+.t5{--ts:24pt;font-family:"Lora",Georgia,serif}.t5 .title{font-family:"Roboto Slab";font-weight:800;text-transform:uppercase;letter-spacing:0.01em;font-size:var(--ts)!important;min-width:0;overflow:hidden;padding:.6mm 0;color:#111}.t5 .mast:not(.front) .title{font-size:calc(var(--ts)*.78)!important}.t5 h1{font-family:"Roboto Slab";font-weight:800;font-size:27pt;text-transform:none;line-height:1.06}.t5 h1.big{font-size:30.2pt}.t5 .deck{font-family:"Lora";font-style:italic;font-weight:400;font-size:12pt}.t5 .cols{font-size:9pt;line-height:1.4}.t5 .cols.c4{font-size:8.5pt}.t5 .sec,.t5 .by,.t5 .meta,.t5 figcaption{font-family:"Roboto Condensed"}.t5 .pn{font-family:"Roboto Slab";font-weight:700}.t5 .cols p.first:not(.ph)::first-letter{font-family:"Roboto Slab";color:#111}
+
+.page{position:relative}.tag{position:absolute;top:4mm;left:12mm;font:600 5.6pt Arial,sans-serif;color:#888;letter-spacing:.04em}
+.sec{grid-area:sec}h1{grid-area:h}.deck{grid-area:d}.by{grid-area:b}figure{grid-area:f}.cols{grid-area:c;height:100%}
+.L2 main,.L3 main,.L4 main,.L5 main,.L6 main{display:grid;column-gap:5mm;grid-template-rows:auto auto auto auto minmax(0,1fr)}
+/* L2 rail */
+.L2 main{grid-template-columns:48mm minmax(0,1fr);grid-template-areas:"sec sec" "h h" "d d" "b f" "c c"}
+.L2 .by{display:block;align-self:stretch;border-bottom:0;margin:0 0 3.5mm}.L2 .by span{display:block;margin-top:2mm}.L2 .photo{height:60mm}
+/* L3 split top */
+.L3 main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"sec sec" "h f" "d f" "b f" "c c"}
+.L3 .photo{height:66mm}.L3 .by{align-self:end;margin-bottom:3.5mm}.L3 h1.big{font-size:27pt}
+/* L4 side portrait photo */
+.L4 main{grid-template-columns:minmax(0,1fr) 62mm;grid-template-areas:"sec sec" "h h" "d d" "b b" "c f"}
+.L4 .photo{height:112mm}.L4 figure{align-self:start}.L4 .cols.c4,.L4 .cols.c3{column-count:3}
+/* L5 photo first */
+.L5 main{grid-template-columns:1fr;grid-template-areas:"sec" "f" "h" "d" "b" "c"}
+.L5 main{grid-template-rows:auto auto auto auto auto minmax(0,1fr)}.L5 .photo{height:92mm}
+/* L6 centered */
+.L6 main{grid-template-rows:auto auto auto auto auto minmax(0,1fr);grid-template-columns:1fr;grid-template-areas:"sec" "h" "d" "b" "f" "c"}
+.L6 .sec,.L6 h1,.L6 .deck{text-align:center}.L6 .by{justify-content:center;gap:8mm}.L6 .photo{height:70mm}.L6 h1{padding:0 6mm}
+@page{size:297mm 420mm}:root{--paper:297mm;--paper-h:420mm;--m:16mm}.mast,.page footer{zoom:1.38}.L3 h1.a1{font-size:27pt;line-height:1.08}.L3 .deck.a1{font-size:12.5pt}.L3 .photo{height:auto;aspect-ratio:3/2;border:1.4pt solid #111;background:none;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block}.L3 .cols{font-size:11.5pt;line-height:1.4}.L2 .cols{font-size:11.5pt;line-height:1.42}
+/* ===== CMS additions: fill + justify + toolbar ===== */
+.cols{column-fill:balance;text-align:justify;text-justify:inter-word;text-align-last:left;hyphens:manual;overflow:visible;font-size:11.5pt;line-height:1.4}
+.cols.left{text-align:left}
+.cols p{overflow-wrap:break-word}
+.page.nophoto main{grid-template-columns:minmax(0,1fr);grid-template-areas:"sec" "h" "d" "b" "c";grid-template-rows:auto auto auto auto minmax(0,1fr)}
+.page.nophoto figure{display:none}
+.L4 .cols.c1,.L4 .cols.c2,.L4 .cols.c3,.L4 .cols.c4,.L4 .cols.c5{column-count:unset}
+.photo{position:relative}.photo>span{text-align:center;padding:2mm}
+.sheet-tools{position:sticky;top:0;z-index:10;display:flex;gap:10px;align-items:center;justify-content:center;padding:10px;background:#0b1f4d;color:#fff;font:600 13px Arial,sans-serif}
+.sheet-tools button,.sheet-tools a{font:600 13px Arial;padding:8px 14px;border-radius:4px;border:0;background:#fff;color:#0b1f4d;cursor:pointer;text-decoration:none}
+.sheet-tools .note{font-weight:400;opacity:.85}
+@media print{.sheet-tools{display:none}.page{box-shadow:none}}
+body.embed{background:#fff}body.embed .page{margin:0}
+
+/* ===== More photo positions: L7 mirror of L3, L8 mirror of L4, L9 bottom, L10 banner, L11 small beside headline ===== */
+.L7 main,.L8 main,.L9 main,.L10 main,.L11 main{display:grid;column-gap:5mm}
+/* L7: headline right, photo left */
+.L7 main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr);grid-template-areas:"sec sec" "f h" "f d" "f b" "c c"}
+.L7 .photo,.L11 .photo{border:1.4pt solid #111;overflow:hidden}.L7 .photo{height:auto;aspect-ratio:3/2}.L7 .by{align-self:end;margin-bottom:3.5mm}.L7 h1.a1{font-size:27pt;line-height:1.08}.L7 .deck.a1{font-size:12.5pt}
+/* L8: portrait photo at the left of the columns */
+.L8 main{grid-template-columns:62mm minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr);grid-template-areas:"sec sec" "h h" "d d" "b b" "f c"}
+.L8 .photo{height:112mm}.L8 figure{align-self:start}
+/* L9: photo below the columns */
+.L9 main{grid-template-columns:1fr;grid-template-rows:auto auto auto auto minmax(0,1fr) auto;grid-template-areas:"sec" "h" "d" "b" "c" "f"}
+.L9 .photo{height:70mm}
+/* L10: wide banner photo under the byline */
+.L10 main{grid-template-columns:1fr;grid-template-rows:auto auto auto auto auto minmax(0,1fr);grid-template-areas:"sec" "h" "d" "b" "f" "c"}
+.L10 .photo{height:52mm}
+/* L11: small photo beside headline and deck */
+.L11 main{grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr);grid-template-areas:"sec sec" "h f" "d f" "b b" "c c"}
+.L11 .photo{height:auto;aspect-ratio:1/1}.L11 figure{align-self:start}

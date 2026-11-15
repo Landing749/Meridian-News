@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{subject}}</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<![endif]-->
+<style>
+  body { margin:0; padding:0; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table { border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; }
+  img { -ms-interpolation-mode:bicubic; }
+  a { text-decoration:none; }
+  @media only screen and (max-width:620px) {
+    .wrap { padding:0 !important; }
+    .pad { padding-left:22px !important; padding-right:22px !important; }
+    .h1 { font-size:26px !important; line-height:1.2 !important; }
+    .logo { width:160px !important; }
+    .stack { display:block !important; width:100% !important; text-align:center !important; }
+    .btn-cell { display:block !important; }
+    .btn-a { display:block !important; }
+    img { max-width:100% !important; height:auto !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#EDE8DC;">
+
+<!-- Inbox preview text -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#EDE8DC;font-size:1px;line-height:1px;mso-hide:all;">{{preheader}}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EDE8DC;">
+<tr><td align="center" class="wrap" style="padding:28px 12px;">
+
+  <!--[if mso]><table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+  <table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:620px;background-color:#FFFFFF;border-radius:4px;overflow:hidden;box-shadow:0 2px 12px rgba(16,31,56,0.10);">
+
+    <!-- Accent bar -->
+    <tr><td style="height:5px;background-color:#B83232;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+    <!-- Top strip: edition name and date -->
+    <tr><td style="background-color:#101F38;padding:11px 32px;" class="pad">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td class="stack" align="left" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2.2px;text-transform:uppercase;color:#FCFBF8;">The Meridian Newsletter</td>
+        <td class="stack" align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#AEB9C6;">{{issue_date}}</td>
+      </tr></table>
+    </td></tr>
+
+    <!-- Masthead -->
+    <tr><td align="center" style="padding:30px 24px 16px 24px;">
+      <a href="{{site_url}}" style="text-decoration:none;"><img src="{{logo_url}}" class="logo" width="210" alt="Meridian Media Group, Inc." style="display:block;width:210px;max-width:70%;height:auto;border:0;outline:none;"></a>
+    </td></tr>
+    <tr><td style="padding:0 32px;" class="pad">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="border-top:3px double #101F38;font-size:0;line-height:0;height:8px;">&nbsp;</td></tr>
+      </table>
+    </td></tr>
+
+    <!-- Headline and introduction -->
+    <tr><td class="pad" style="padding:22px 36px 4px 36px;">
+      <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B83232;margin:0 0 10px 0;">This issue</div>
+      <h1 class="h1" style="margin:0 0 20px 0;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.18;font-weight:bold;color:#101F38;">{{subject}}</h1>
+      <p style="margin:0 0 14px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.6;font-weight:bold;color:#101F38;">Hello {{to_name}},</p>
+      {{{intro_html}}}
+    </td></tr>
+
+    <!-- Section label -->
+    <tr><td class="pad" style="padding:16px 36px 0 36px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px 0;">
+        <tr>
+          <td style="padding:0 12px 0 0;white-space:nowrap;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:2.4px;text-transform:uppercase;color:#101F38;">From the newsroom</td>
+          <td width="100%" style="width:100%;border-bottom:1px solid #C9C2B0;font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+      </table>
+
+      <!-- Stories (one block per article, built by the CMS) -->
+      {{{articles_html}}}
+    </td></tr>
+
+    <!-- Closing note and signature -->
+    <tr><td class="pad" style="padding:4px 36px 8px 36px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F0E7;border-left:4px solid #17365D;">
+        <tr><td style="padding:20px 22px 6px 22px;">
+          {{{outro_html}}}
+          <p style="margin:2px 0 2px 0;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.5;font-weight:bold;color:#101F38;">The team at Meridian Media Group</p>
+          <div style="height:12px;font-size:0;line-height:0;">&nbsp;</div>
+        </td></tr>
+      </table>
+    </td></tr>
+
+    <!-- Button (bulletproof, with an Outlook fallback) -->
+    <tr><td align="center" class="pad" style="padding:28px 36px 34px 36px;">
+      <!--[if mso]>
+      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{site_url}}" style="height:46px;v-text-anchor:middle;width:240px;" arcsize="8%" stroke="f" fillcolor="#17365D">
+        <w:anchorlock xmlns:w="urn:schemas-microsoft-com:office:word"/>
+        <center style="color:#FCFBF8;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;">Read more on our website</center>
+      </v:roundrect>
+      <![endif]-->
+      <!--[if !mso]><!-- -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btn-cell" style="margin:0 auto;"><tr>
+        <td align="center" bgcolor="#17365D" style="background-color:#17365D;border-radius:4px;">
+          <a href="{{site_url}}" class="btn-a" style="display:inline-block;padding:14px 32px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;line-height:18px;color:#FCFBF8;text-decoration:none;border-radius:4px;">Read more on our website &rarr;</a>
+        </td>
+      </tr></table>
+      <!--<![endif]-->
+    </td></tr>
+
+    <!-- Footer -->
+    <tr><td class="pad" style="background-color:#101F38;padding:26px 36px 28px 36px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.7;color:#AEB9C6;">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-weight:bold;color:#FCFBF8;margin:0 0 2px 0;">Meridian Media Group, Inc.</div>
+      <div style="margin:0 0 14px 0;">Makati City, Philippines &nbsp;&middot;&nbsp; <a href="{{site_url}}" style="color:#FCFBF8;text-decoration:underline;">Visit our website</a></div>
+      <div style="border-top:1px solid #2B3D5A;padding-top:14px;">You are receiving this email because {{to_email}} is subscribed to The Meridian Newsletter. If you no longer want these emails, you can <a href="{{unsubscribe_url}}" style="color:#FCFBF8;text-decoration:underline;">unsubscribe here</a>.</div>
+      <div style="margin-top:10px;color:#8896A8;">&copy; {{year}} Meridian Media Group, Inc. This newsletter and its content are a fictional project.</div>
+    </td></tr>
+
+  </table>
+  <!--[if mso]></td></tr></table><![endif]-->
+
+</td></tr>
+</table>
+</body>
+</html>

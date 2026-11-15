@@ -1,0 +1,13 @@
+import { bundle, boot, withPublicCopy } from './harness.mjs';
+import { seed } from './seed.mjs';
+const code = await bundle();
+const data = await withPublicCopy(seed());
+console.log('public keys:', Object.keys(data.public).join(','), '| hash tables:', Object.keys(data.public._hash).join(','));
+const s = await boot(code, data);
+console.log('home:', s.text().slice(0, 300));
+console.log('errors:', s.errors);
+await s.go('/articles/news/company-launches-new-newsroom');
+console.log('article:', s.text().slice(0, 400));
+console.log('has script tag in page?', /alert\(1\)/.test(s.html()));
+console.log('errors:', s.errors);
+process.exit(0);

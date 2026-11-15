@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */4 * * *' # refreshes the prerendered pages (search-engine copy) a few times a day; the live site always shows current data anyway
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Work out the site address
+        id: addr
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"; OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          if [ -f CNAME ]; then
+            echo "base=" >> "$GITHUB_OUTPUT"; echo "site=https://$(head -n1 CNAME | tr -d '[:space:]')" >> "$GITHUB_OUTPUT"
+          elif [ "${REPO,,}" = "$OWNER.github.io" ]; then
+            echo "base=" >> "$GITHUB_OUTPUT"; echo "site=https://$OWNER.github.io" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO" >> "$GITHUB_OUTPUT"; echo "site=https://$OWNER.github.io/$REPO" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        run: npm run build
+        env:
+          BASE_PATH: ${{ steps.addr.outputs.base }}
+          SITE_URL: ${{ steps.addr.outputs.site }}
+
+      # Static copies of the public pages for search engines and link previews. Reads /public over its public address: no secrets.
+      # If it fails the site still works; visitors just get the app without the pre-rendered copy.
+      - name: Prerender public pages
+        continue-on-error: true
+        run: npm run prerender
+        env:
+          BASE_PATH: ${{ steps.addr.outputs.base }}
+          SITE_URL: ${{ steps.addr.outputs.site }}
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
