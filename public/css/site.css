@@ -239,7 +239,8 @@ section{padding:3.6rem 0}
 .lead-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0 2.4rem;align-items:start;padding:0 0 1.8rem;border-right:0;border-bottom:1px solid rgba(16,31,56,.35)}
 .ls-text{display:flex;flex-direction:column;min-height:100%}
 .ls-by{display:flex;flex-direction:column;gap:.6rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(16,31,56,.25)}
-.ls-fig{margin:0}.ls-fig .cover{aspect-ratio:4/3;width:100%}
+/* Lead-story photo: show the whole picture (no cropping), whatever its shape */
+.ls-fig{margin:0}.ls-fig .cover{aspect-ratio:auto;width:100%;height:auto;max-height:620px;object-fit:contain}
 .contents{padding:1.5rem 0 0}
 .toc{columns:3;column-gap:2.2rem}.toc li{break-inside:avoid}
 @media (max-width:860px){.lead-story{grid-template-columns:1fr}.ls-fig{order:-1;margin-bottom:1.2rem}.toc{columns:1}}
